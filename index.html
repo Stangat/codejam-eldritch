@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Eldritch Horror</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="cards-container">
+        <div class="ancient-card azathoth"></div>
+        <div class="ancient-card cthulthu"></div>
+        <div class="ancient-card logSothoth"></div>
+        <div class="ancient-card shubNiggurath"></div>
+      </div>
+      <div class="difficulty-container hidden">
+        <div class="difficulty">Очень лёгкий уровень</div>
+        <div class="difficulty">Лёгкий уровень</div>
+        <div class="difficulty">Средний уровень</div>
+        <div class="difficulty">Высокий уровень</div>
+        <div class="difficulty">Очень высокий уровень</div>
+      </div>
+      <p class="shuffle-deck hidden">Замешать колоду</p>
+      <div class="deck-container hidden">
+        <div class="current-state">
+          <div class="stage-container">
+            <span class="stage-text">Первая стадия</span>
+            <div class="dots-container">
+              <div class="dot green"></div>
+              <div class="dot brown"></div>
+              <div class="dot blue"></div>
+            </div>
+          </div>
+          <div class="stage-container">
+            <span class="stage-text">Вторая стадия</span>
+            <div class="dots-container">
+              <div class="dot green"></div>
+              <div class="dot brown"></div>
+              <div class="dot blue"></div>
+            </div>
+          </div>
+          <div class="stage-container">
+            <span class="stage-text">Третья стадия</span>
+            <div class="dots-container">
+              <div class="dot green"></div>
+              <div class="dot brown"></div>
+              <div class="dot blue"></div>
+            </div>
+          </div>
+        </div>
+        <div class="deck"></div>
+        <div class="last-card"></div>
+      </div>
+    </div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
