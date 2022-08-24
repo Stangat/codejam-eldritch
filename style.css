@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url(/assets/home.png);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.ancient-card {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 260px;
+  width: 200px;
+  /* filter: drop-shadow(0px 4px 4px #6f0d0d); */
+  /* border: 2px solid red; */
+}
+
+.azathoth {
+  background-image: url(/assets/Ancients/Azathoth.png);
+}
+
+.cthulthu {
+  background-image: url(/assets/Ancients/Cthulthu.png);
+}
+
+.logSothoth {
+  background-image: url(/assets/Ancients/IogSothoth.png);
+}
+
+.shubNiggurath {
+  background-image: url(/assets/Ancients/ShubNiggurath.png);
+}
+
+.difficulty-container {
+  margin: 25px 0 25px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+}
+
+.difficulty {
+  padding: 5px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.difficulty:hover {
+  opacity: 0.5;
+}
+
+.shuffle-deck {
+  width: fit-content;
+  margin: 75px auto 0;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  border: 3px solid red;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.shuffle-deck:hover {
+  opacity: 0.6;
+}
+
+.deck-container.hidden,
+.shuffle-deck.hidden,
+.difficulty-container.hidden {
+  display: none;
+}
+
+.dots-container {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  /* justify-content: center; */
+}
+
+.dot {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  width: 30px;
+}
+
+.green {
+  background-color: green;
+}
+
+.brown {
+  background-color: brown;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.deck {
+  background-image: url("assets/mythicCardBackground.png");
+  background-size: cover;
+  height: 190px;
+  width: 130px;
+}
+
+.last-card {
+  height: 190px;
+  width: 130px;
+  border: 2px solid red;
+}
+
+.deck-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.current-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
