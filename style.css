@@ -24,8 +24,10 @@ body {
   cursor: pointer;
   height: 260px;
   width: 200px;
-  /* filter: drop-shadow(0px 4px 4px #6f0d0d); */
-  /* border: 2px solid red; */
+}
+
+.active-card {
+  filter: drop-shadow(0px 8px 8px #6f0d0d);
 }
 
 .azathoth {
@@ -81,7 +83,8 @@ body {
 
 .deck-container.hidden,
 .shuffle-deck.hidden,
-.difficulty-container.hidden {
+.difficulty-container.hidden,
+.deck.hidden {
   display: none;
 }
 
@@ -99,6 +102,7 @@ body {
   height: 30px;
   justify-content: center;
   width: 30px;
+  color: white;
 }
 
 .green {
@@ -118,6 +122,7 @@ body {
   background-size: cover;
   height: 190px;
   width: 130px;
+  cursor: pointer;
 }
 
 .last-card {
@@ -128,7 +133,7 @@ body {
 
 .deck-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .current-state {
