@@ -71,7 +71,7 @@ function makeActive(element) {
   element.classList.add("active");
 }
 
-function fillMiniDeck(cardType, source, min, max, miniDeck) {
+function addCardToMiniDeck(cardType, source, min, max, miniDeck) {
   cardType = pickCard(source, min, max);
   miniDeck.push(cardType);
 }
@@ -160,36 +160,36 @@ basicLevel.addEventListener("click", () => {
 shuffleButton.addEventListener("click", () => {
   makeInvisible(shuffleButton);
   makeVisible(deckContainer);
-  fillMiniDeck(greenCardOne, cardsDataGreen, 0, 17, miniDeckOfCardsFirstStage);
-  fillMiniDeck(brownCardOne, cardsDataBrown, 0, 20, miniDeckOfCardsFirstStage);
-  fillMiniDeck(brownCardTwo, cardsDataBrown, 0, 19, miniDeckOfCardsFirstStage);
-  fillMiniDeck(blueCardOne, cardsDataBlue, 0, 11, miniDeckOfCardsFirstStage);
+  addCardToMiniDeck(greenCardOne, cardsDataGreen, 0, 17, miniDeckOfCardsFirstStage);
+  addCardToMiniDeck(brownCardOne, cardsDataBrown, 0, 20, miniDeckOfCardsFirstStage);
+  addCardToMiniDeck(brownCardTwo, cardsDataBrown, 0, 19, miniDeckOfCardsFirstStage);
+  addCardToMiniDeck(blueCardOne, cardsDataBlue, 0, 11, miniDeckOfCardsFirstStage);
 
-  fillMiniDeck(greenCardOne, cardsDataGreen, 0, 16, miniDeckOfCardsSecondStage);
-  fillMiniDeck(greenCardTwo, cardsDataGreen, 0, 15, miniDeckOfCardsSecondStage);
-  fillMiniDeck(brownCardOne, cardsDataBrown, 0, 18, miniDeckOfCardsSecondStage);
-  fillMiniDeck(brownCardTwo, cardsDataBrown, 0, 17, miniDeckOfCardsSecondStage);
-  fillMiniDeck(
+  addCardToMiniDeck(greenCardOne, cardsDataGreen, 0, 16, miniDeckOfCardsSecondStage);
+  addCardToMiniDeck(greenCardTwo, cardsDataGreen, 0, 15, miniDeckOfCardsSecondStage);
+  addCardToMiniDeck(brownCardOne, cardsDataBrown, 0, 18, miniDeckOfCardsSecondStage);
+  addCardToMiniDeck(brownCardTwo, cardsDataBrown, 0, 17, miniDeckOfCardsSecondStage);
+  addCardToMiniDeck(
     brownCardThree,
     cardsDataBrown,
     0,
     16,
     miniDeckOfCardsSecondStage
   );
-  fillMiniDeck(blueCardOne, cardsDataBlue, 0, 10, miniDeckOfCardsSecondStage);
+  addCardToMiniDeck(blueCardOne, cardsDataBlue, 0, 10, miniDeckOfCardsSecondStage);
 
-  fillMiniDeck(greenCardOne, cardsDataGreen, 0, 14, miniDeckOfCardsThirdStage);
-  fillMiniDeck(greenCardTwo, cardsDataGreen, 0, 13, miniDeckOfCardsThirdStage);
-  fillMiniDeck(brownCardOne, cardsDataBrown, 0, 16, miniDeckOfCardsThirdStage);
-  fillMiniDeck(brownCardTwo, cardsDataBrown, 0, 15, miniDeckOfCardsThirdStage);
-  fillMiniDeck(
+  addCardToMiniDeck(greenCardOne, cardsDataGreen, 0, 14, miniDeckOfCardsThirdStage);
+  addCardToMiniDeck(greenCardTwo, cardsDataGreen, 0, 13, miniDeckOfCardsThirdStage);
+  addCardToMiniDeck(brownCardOne, cardsDataBrown, 0, 16, miniDeckOfCardsThirdStage);
+  addCardToMiniDeck(brownCardTwo, cardsDataBrown, 0, 15, miniDeckOfCardsThirdStage);
+  addCardToMiniDeck(
     brownCardThree,
     cardsDataBrown,
     0,
     14,
     miniDeckOfCardsThirdStage
   );
-  fillMiniDeck(brownCardFour, cardsDataBrown, 0, 14, miniDeckOfCardsThirdStage);
+  addCardToMiniDeck(brownCardFour, cardsDataBrown, 0, 14, miniDeckOfCardsThirdStage);
 
   miniDeckOfCardsFirstStage.sort(() => Math.random() - 0.5);
 
