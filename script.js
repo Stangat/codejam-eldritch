@@ -1,15 +1,26 @@
+const ancients = document.querySelector(".cards-container");
 const azathoth = document.querySelector(".azathoth");
 const cthulthu = document.querySelector(".cthulthu");
 const logSothoth = document.querySelector(".logSothoth");
 const shubNiggurath = document.querySelector(".shubNiggurath");
 
-const difficultyLevel = document.querySelector(".difficulty-container");
+const difficultyLevels = document.querySelector(".difficulty-container");
+const superEasyLevel = difficultyLevels.children[0];
+const easyLevel = difficultyLevels.children[1];
+const basicLevel = difficultyLevels.children[2];
+const highLevel = difficultyLevels.children[3];
+const superHighLevel = difficultyLevels.children[4];
+
 const shuffleButton = document.querySelector(".shuffle-deck");
 const deckContainer = document.querySelector(".deck-container");
 const deckButton = document.querySelector(".deck");
 const currentCard = document.querySelector(".last-card");
 
-// console.log(difficulty.children[3])
+const stageOne = document.querySelector(".stage-one");
+const stageTwo = document.querySelector(".stage-two");
+const stageThree = document.querySelector(".stage-three");
+
+// console.log(superEasyLevel)
 
 let greenCardOne;
 let greenCardTwo;
@@ -27,6 +38,8 @@ let miniDeckOfCardsFirstStage = [];
 let miniDeckOfCardsSecondStage = [];
 let miniDeckOfCardsThirdStage = [];
 let totalDeck = [];
+
+let displayingCard;
 
 import ancientsData from "./data/ancients.js";
 import cardsDataGreen from "./data/mythicCards/green/index.js";
@@ -49,7 +62,19 @@ function pickCard(source, min, max) {
   return source.splice(indexOfCard, 1);
 }
 
-//Ancient azathoth
+function makeVisible(element) {
+  element.classList.remove("hidden");
+}
+
+function makeInvisible(element) {
+  element.classList.add("hidden");
+}
+
+function makeActive(element) {
+  element.classList.add("active");
+}
+
+//ancient Azathoth
 
 //first stage
 
@@ -134,8 +159,102 @@ totalDeck = totalDeck.concat(
 
 console.log(totalDeck);
 
-console.log(totalDeck.pop());
+// console.log(totalDeck.pop());
 
-console.log(totalDeck);
+// console.log(totalDeck);
 
-console.log(cardsDataBrown.length);
+// console.log(cardsDataBrown.length);
+
+//making visible
+
+azathoth.addEventListener("click", () => {
+  makeVisible(difficultyLevels);
+});
+
+basicLevel.addEventListener("click", () => {
+  makeVisible(shuffleButton);
+  makeActive(basicLevel);
+});
+
+shuffleButton.addEventListener("click", () => {
+  makeInvisible(shuffleButton);
+  makeVisible(deckContainer);
+});
+
+function showCard() {
+  if (totalDeck.length > 0) {
+    displayingCard = totalDeck.pop();
+    let displayingCardId = displayingCard.id;
+    console.log(displayingCard);
+    currentCard.style.backgroundImage = `url(/assets/MythicCards/${displayingCardId}.png)`;
+    currentCard.style.backgroundSize = "cover";
+  } else {
+    makeInvisible(deckButton);
+  }
+}
+
+// feeding dots container
+
+function addNumbersInDots(stage, green, brown, blue) {
+  stage.children[0].innerHTML = green;
+  stage.children[1].innerHTML = brown;
+  stage.children[2].innerHTML = blue;
+}
+
+function decreaseNumbersInDots(stage, number) {
+  let decreasedNumber = stage.children[number].innerHTML - 1;
+  stage.children[number].innerHTML = decreasedNumber;
+}
+
+addNumbersInDots(stageOne, 1, 2, 1);
+addNumbersInDots(stageTwo, 2, 3, 1);
+addNumbersInDots(stageThree, 2, 4, 0);
+
+deckButton.addEventListener("click", () => {
+  showCard();
+  if (displayingCard.color === "green" && stageOne.children[0].innerHTML > 0) {
+    decreaseNumbersInDots(stageOne, 0);
+  } else if (
+    displayingCard.color === "brown" &&
+    stageOne.children[1].innerHTML > 0
+  ) {
+    decreaseNumbersInDots(stageOne, 1);
+  } else if (
+    displayingCard.color === "blue" &&
+    stageOne.children[2].innerHTML > 0
+  ) {
+    decreaseNumbersInDots(stageOne, 2);
+  } else if (
+    displayingCard.color === "green" &&
+    stageTwo.children[0].innerHTML > 0 
+  ) {
+    decreaseNumbersInDots(stageTwo, 0);
+  } else if (
+    displayingCard.color === "brown" &&
+    stageTwo.children[1].innerHTML > 0 
+  ) {
+    decreaseNumbersInDots(stageTwo, 1);
+  } else if (
+    displayingCard.color === "blue" &&
+    stageTwo.children[2].innerHTML > 0 
+  ) {
+    decreaseNumbersInDots(stageTwo, 2);
+  }else if (
+    displayingCard.color === "green" &&
+    stageThree.children[0].innerHTML > 0
+  ) {
+    decreaseNumbersInDots(stageThree, 0);
+  } else if (
+    displayingCard.color === "brown" &&
+    stageThree.children[1].innerHTML > 0
+  ) {
+    decreaseNumbersInDots(stageThree, 1);
+  } else if (
+    displayingCard.color === "blue" &&
+    stageThree.children[2].innerHTML > 0
+  ) {
+    decreaseNumbersInDots(stageThree, 2);
+  }
+});
+
+// console.log(thirdNumber - 1);
