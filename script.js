@@ -20,8 +20,6 @@ const stageOne = document.querySelector(".stage-one");
 const stageTwo = document.querySelector(".stage-two");
 const stageThree = document.querySelector(".stage-three");
 
-// console.log(superEasyLevel)
-
 let greenCardOne;
 let greenCardTwo;
 let greenCardThree;
@@ -48,8 +46,6 @@ import cardsDataBrown from "./data/mythicCards/brown/index.js";
 
 //middle level
 
-//pick cards
-
 function getRandomNumber(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -59,7 +55,8 @@ function getRandomNumber(min, max) {
 function pickCard(source, min, max) {
   const randomNumber = getRandomNumber(min, max);
   const indexOfCard = source.indexOf(source[randomNumber]);
-  return source.splice(indexOfCard, 1);
+  let arrayCard = source.splice(indexOfCard, 1);
+  return arrayCard[0];
 }
 
 function makeVisible(element) {
@@ -74,112 +71,16 @@ function makeActive(element) {
   element.classList.add("active");
 }
 
-//ancient Azathoth
+function fillMiniDeck(cardType, source, min, max, miniDeck) {
+  cardType = pickCard(source, min, max);
+  miniDeck.push(cardType);
+}
 
-//first stage
-
-greenCardOne = pickCard(cardsDataGreen, 0, 17);
-
-blueCardOne = pickCard(cardsDataBlue, 0, 11);
-
-brownCardOne = pickCard(cardsDataBrown, 0, 20);
-brownCardTwo = pickCard(cardsDataBrown, 0, 19);
-
-miniDeckOfCardsFirstStage = miniDeckOfCardsFirstStage.concat(
-  greenCardOne,
-  blueCardOne,
-  brownCardOne,
-  brownCardTwo
-);
-
-let miniDeckOfCardsFirstStageShuffle = miniDeckOfCardsFirstStage.sort(
-  () => Math.random() - 0.5
-);
-
-console.log(miniDeckOfCardsFirstStageShuffle);
-
-//second stage
-
-greenCardOne = pickCard(cardsDataGreen, 0, 16);
-greenCardTwo = pickCard(cardsDataGreen, 0, 15);
-
-blueCardOne = pickCard(cardsDataBlue, 0, 10);
-
-brownCardOne = pickCard(cardsDataBrown, 0, 18);
-brownCardTwo = pickCard(cardsDataBrown, 0, 17);
-brownCardThree = pickCard(cardsDataBrown, 0, 16);
-
-miniDeckOfCardsSecondStage = miniDeckOfCardsSecondStage.concat(
-  greenCardOne,
-  greenCardTwo,
-  blueCardOne,
-  brownCardOne,
-  brownCardTwo,
-  brownCardThree
-);
-
-let miniDeckOfCardsSecondStageShuffle = miniDeckOfCardsSecondStage.sort(
-  () => Math.random() - 0.5
-);
-
-console.log(miniDeckOfCardsSecondStageShuffle);
-
-//third stage
-
-greenCardOne = pickCard(cardsDataGreen, 0, 14);
-greenCardTwo = pickCard(cardsDataGreen, 0, 13);
-
-brownCardOne = pickCard(cardsDataBrown, 0, 15);
-brownCardTwo = pickCard(cardsDataBrown, 0, 14);
-brownCardThree = pickCard(cardsDataBrown, 0, 13);
-brownCardFour = pickCard(cardsDataBrown, 0, 12);
-
-miniDeckOfCardsThirdStage = miniDeckOfCardsThirdStage.concat(
-  greenCardOne,
-  greenCardTwo,
-  brownCardOne,
-  brownCardTwo,
-  brownCardThree,
-  brownCardFour
-);
-
-let miniDeckOfCardsThirdStageShuffle = miniDeckOfCardsThirdStage.sort(
-  () => Math.random() - 0.5
-);
-
-console.log(miniDeckOfCardsThirdStageShuffle);
-
-//making total deck
-
-totalDeck = totalDeck.concat(
-  miniDeckOfCardsThirdStageShuffle,
-  miniDeckOfCardsSecondStageShuffle,
-  miniDeckOfCardsFirstStageShuffle
-);
-
-console.log(totalDeck);
-
-// console.log(totalDeck.pop());
-
-// console.log(totalDeck);
-
-// console.log(cardsDataBrown.length);
-
-//making visible
-
-azathoth.addEventListener("click", () => {
-  makeVisible(difficultyLevels);
-});
-
-basicLevel.addEventListener("click", () => {
-  makeVisible(shuffleButton);
-  makeActive(basicLevel);
-});
-
-shuffleButton.addEventListener("click", () => {
-  makeInvisible(shuffleButton);
-  makeVisible(deckContainer);
-});
+function addNumbersInDots(stage, green, brown, blue) {
+  stage.children[0].innerHTML = green;
+  stage.children[1].innerHTML = brown;
+  stage.children[2].innerHTML = blue;
+}
 
 function showCard() {
   if (totalDeck.length > 0) {
@@ -193,25 +94,12 @@ function showCard() {
   }
 }
 
-// feeding dots container
-
-function addNumbersInDots(stage, green, brown, blue) {
-  stage.children[0].innerHTML = green;
-  stage.children[1].innerHTML = brown;
-  stage.children[2].innerHTML = blue;
-}
-
 function decreaseNumbersInDots(stage, number) {
   let decreasedNumber = stage.children[number].innerHTML - 1;
   stage.children[number].innerHTML = decreasedNumber;
 }
 
-addNumbersInDots(stageOne, 1, 2, 1);
-addNumbersInDots(stageTwo, 2, 3, 1);
-addNumbersInDots(stageThree, 2, 4, 0);
-
-deckButton.addEventListener("click", () => {
-  showCard();
+function checkColorOfCard() {
   if (displayingCard.color === "green" && stageOne.children[0].innerHTML > 0) {
     decreaseNumbersInDots(stageOne, 0);
   } else if (
@@ -226,20 +114,20 @@ deckButton.addEventListener("click", () => {
     decreaseNumbersInDots(stageOne, 2);
   } else if (
     displayingCard.color === "green" &&
-    stageTwo.children[0].innerHTML > 0 
+    stageTwo.children[0].innerHTML > 0
   ) {
     decreaseNumbersInDots(stageTwo, 0);
   } else if (
     displayingCard.color === "brown" &&
-    stageTwo.children[1].innerHTML > 0 
+    stageTwo.children[1].innerHTML > 0
   ) {
     decreaseNumbersInDots(stageTwo, 1);
   } else if (
     displayingCard.color === "blue" &&
-    stageTwo.children[2].innerHTML > 0 
+    stageTwo.children[2].innerHTML > 0
   ) {
     decreaseNumbersInDots(stageTwo, 2);
-  }else if (
+  } else if (
     displayingCard.color === "green" &&
     stageThree.children[0].innerHTML > 0
   ) {
@@ -255,6 +143,70 @@ deckButton.addEventListener("click", () => {
   ) {
     decreaseNumbersInDots(stageThree, 2);
   }
+}
+
+azathoth.addEventListener("click", () => {
+  makeVisible(difficultyLevels);
+  addNumbersInDots(stageOne, 1, 2, 1);
+  addNumbersInDots(stageTwo, 2, 3, 1);
+  addNumbersInDots(stageThree, 2, 4, 0);
 });
 
-// console.log(thirdNumber - 1);
+basicLevel.addEventListener("click", () => {
+  makeVisible(shuffleButton);
+  makeActive(basicLevel);
+});
+
+shuffleButton.addEventListener("click", () => {
+  makeInvisible(shuffleButton);
+  makeVisible(deckContainer);
+  fillMiniDeck(greenCardOne, cardsDataGreen, 0, 17, miniDeckOfCardsFirstStage);
+  fillMiniDeck(brownCardOne, cardsDataBrown, 0, 20, miniDeckOfCardsFirstStage);
+  fillMiniDeck(brownCardTwo, cardsDataBrown, 0, 19, miniDeckOfCardsFirstStage);
+  fillMiniDeck(blueCardOne, cardsDataBlue, 0, 11, miniDeckOfCardsFirstStage);
+
+  fillMiniDeck(greenCardOne, cardsDataGreen, 0, 16, miniDeckOfCardsSecondStage);
+  fillMiniDeck(greenCardTwo, cardsDataGreen, 0, 15, miniDeckOfCardsSecondStage);
+  fillMiniDeck(brownCardOne, cardsDataBrown, 0, 18, miniDeckOfCardsSecondStage);
+  fillMiniDeck(brownCardTwo, cardsDataBrown, 0, 17, miniDeckOfCardsSecondStage);
+  fillMiniDeck(
+    brownCardThree,
+    cardsDataBrown,
+    0,
+    16,
+    miniDeckOfCardsSecondStage
+  );
+  fillMiniDeck(blueCardOne, cardsDataBlue, 0, 10, miniDeckOfCardsSecondStage);
+
+  fillMiniDeck(greenCardOne, cardsDataGreen, 0, 14, miniDeckOfCardsThirdStage);
+  fillMiniDeck(greenCardTwo, cardsDataGreen, 0, 13, miniDeckOfCardsThirdStage);
+  fillMiniDeck(brownCardOne, cardsDataBrown, 0, 16, miniDeckOfCardsThirdStage);
+  fillMiniDeck(brownCardTwo, cardsDataBrown, 0, 15, miniDeckOfCardsThirdStage);
+  fillMiniDeck(
+    brownCardThree,
+    cardsDataBrown,
+    0,
+    14,
+    miniDeckOfCardsThirdStage
+  );
+  fillMiniDeck(brownCardFour, cardsDataBrown, 0, 14, miniDeckOfCardsThirdStage);
+
+  miniDeckOfCardsFirstStage.sort(() => Math.random() - 0.5);
+
+  miniDeckOfCardsSecondStage.sort(() => Math.random() - 0.5);
+
+  miniDeckOfCardsThirdStage.sort(() => Math.random() - 0.5);
+
+  totalDeck = totalDeck.concat(
+    miniDeckOfCardsThirdStage,
+    miniDeckOfCardsSecondStage,
+    miniDeckOfCardsFirstStage
+  );
+
+  console.log(totalDeck);
+});
+
+deckButton.addEventListener("click", () => {
+  showCard();
+  checkColorOfCard();
+});
