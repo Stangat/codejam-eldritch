@@ -1,7 +1,7 @@
 const ancients = document.querySelector(".cards-container");
 const azathoth = document.querySelector(".azathoth");
 const cthulthu = document.querySelector(".cthulthu");
-const logSothoth = document.querySelector(".logSothoth");
+const iogSothoth = document.querySelector(".iogSothoth");
 const shubNiggurath = document.querySelector(".shubNiggurath");
 
 const difficultyLevels = document.querySelector(".difficulty-container");
@@ -20,22 +20,36 @@ const stageOne = document.querySelector(".stage-one");
 const stageTwo = document.querySelector(".stage-two");
 const stageThree = document.querySelector(".stage-three");
 
-let greenCardOne;
-let greenCardTwo;
-let greenCardThree;
+// let greenCardOne;
+// let greenCardTwo;
+// let greenCardThree;
 
-let blueCardOne;
-let blueCardTwo;
+// let blueCardOne;
+// let blueCardTwo;
 
-let brownCardOne;
-let brownCardTwo;
-let brownCardThree;
-let brownCardFour;
+// let brownCardOne;
+// let brownCardTwo;
+// let brownCardThree;
+// let brownCardFour;
+
+let greenCard;
+let brownCard;
+let blueCard;
 
 let miniDeckOfCardsFirstStage = [];
 let miniDeckOfCardsSecondStage = [];
 let miniDeckOfCardsThirdStage = [];
+
+// let miniDeckOfCardsFirstStage = [];
+// let miniDeckOfCardsSecondStage = [];
+// let miniDeckOfCardsThirdStage = [];
+
+// let miniDeckOfCardsFirstStage = [];
+// let miniDeckOfCardsSecondStage = [];
+// let miniDeckOfCardsThirdStage = [];
+
 let totalDeck = [];
+// let totalDeck1 = [];
 
 let displayingCard;
 
@@ -43,8 +57,6 @@ import ancientsData from "./data/ancients.js";
 import cardsDataGreen from "./data/mythicCards/green/index.js";
 import cardsDataBlue from "./data/mythicCards/blue/index.js";
 import cardsDataBrown from "./data/mythicCards/brown/index.js";
-
-//middle level
 
 function getRandomNumber(min, max) {
   min = Math.ceil(min);
@@ -69,6 +81,10 @@ function makeInvisible(element) {
 
 function makeActive(element) {
   element.classList.add("active");
+}
+
+function removeActive(element) {
+  element.classList.remove("active");
 }
 
 function addCardToMiniDeck(cardType, source, min, max, miniDeck) {
@@ -145,65 +161,319 @@ function checkColorOfCard() {
   }
 }
 
+//Azathoth
+
+function fillMiniDeckAzathothStageOne(
+  sourcegGreen,
+  sourceBrown,
+  sourceBlue,
+  miniDeck
+) {
+  addCardToMiniDeck(greenCard, sourcegGreen, 0, 17, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 20, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 19, miniDeck);
+  addCardToMiniDeck(blueCard, sourceBlue, 0, 11, miniDeck);
+  return miniDeck;
+}
+
+function fillMiniDeckAzathothStageTwo(
+  sourcegGreen,
+  sourceBrown,
+  sourceBlue,
+  miniDeck
+) {
+  addCardToMiniDeck(greenCard, sourcegGreen, 0, 16, miniDeck);
+  addCardToMiniDeck(greenCard, sourcegGreen, 0, 15, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 18, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 17, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 16, miniDeck);
+  addCardToMiniDeck(blueCard, sourceBlue, 0, 10, miniDeck);
+  return miniDeck;
+}
+
+function fillMiniDeckAzathothStageThree(sourcegGreen, sourceBrown, miniDeck) {
+  addCardToMiniDeck(greenCard, sourcegGreen, 0, 14, miniDeck);
+  addCardToMiniDeck(greenCard, sourcegGreen, 0, 13, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 15, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 14, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 13, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 12, miniDeck);
+  return miniDeck;
+}
+
+//Cthulthu
+
+function fillMiniDeckCthulthuStageOne(sourceBrown, sourceBlue, miniDeck) {
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 20, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 19, miniDeck);
+  addCardToMiniDeck(blueCard, sourceBlue, 0, 11, miniDeck);
+  addCardToMiniDeck(blueCard, sourceBlue, 0, 10, miniDeck);
+  return miniDeck;
+}
+
+function fillMiniDeckCthulthuStageTwo(sourcegGreen, sourceBrown, miniDeck) {
+  addCardToMiniDeck(greenCard, sourcegGreen, 0, 17, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 18, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 17, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 16, miniDeck);
+  return miniDeck;
+}
+
+function fillMiniDeckCthulthuStageThree(sourcegGreen, sourceBrown, miniDeck) {
+  addCardToMiniDeck(greenCard, sourcegGreen, 0, 16, miniDeck);
+  addCardToMiniDeck(greenCard, sourcegGreen, 0, 15, miniDeck);
+  addCardToMiniDeck(greenCard, sourcegGreen, 0, 14, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 15, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 14, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 13, miniDeck);
+  addCardToMiniDeck(brownCard, sourceBrown, 0, 12, miniDeck);
+  return miniDeck;
+}
+
+shuffleButton.addEventListener("click", () => {
+  makeInvisible(shuffleButton);
+  makeVisible(deckContainer);
+  if (totalDeck.length > 0) {
+    let card;
+    // console.log(totalDeck);
+    for (let i = 0; i < totalDeck.length; i++) {
+      if (totalDeck[i].color === "green") {
+        card = totalDeck.splice(i, 1)[0];
+        i--;
+        cardsDataGreen.push(card);
+        // console.log(card);
+      } else if (totalDeck[i].color === "brown") {
+        card = totalDeck.splice(i, 1)[0];
+        i--;
+        cardsDataBrown.push(card);
+      } else if (totalDeck[i].color === "blue") {
+        card = totalDeck.splice(i, 1)[0];
+        i--;
+        cardsDataBlue.push(card);
+      }
+    }
+    miniDeckOfCardsFirstStage.length = 0;
+    miniDeckOfCardsSecondStage.length = 0;
+    miniDeckOfCardsThirdStage.length = 0;
+
+    // console.log(cardsDataGreen.length);
+    // console.log(cardsDataBrown.length);
+    // console.log(cardsDataBlue.length);
+
+    // console.log(totalDeck);
+
+    if (
+      azathoth.className === "ancient-card azathoth active" &&
+      basicLevel.className === "difficulty active"
+    ) {
+      // console.log(totalDeck);
+      fillMiniDeckAzathothStageOne(
+        cardsDataGreen,
+        cardsDataBrown,
+        cardsDataBlue,
+        miniDeckOfCardsFirstStage
+      );
+
+      fillMiniDeckAzathothStageTwo(
+        cardsDataGreen,
+        cardsDataBrown,
+        cardsDataBlue,
+        miniDeckOfCardsSecondStage
+      );
+
+      fillMiniDeckAzathothStageThree(
+        cardsDataGreen,
+        cardsDataBrown,
+        miniDeckOfCardsThirdStage
+      );
+
+      miniDeckOfCardsFirstStage.sort(() => Math.random() - 0.5);
+      miniDeckOfCardsSecondStage.sort(() => Math.random() - 0.5);
+      miniDeckOfCardsThirdStage.sort(() => Math.random() - 0.5);
+
+      totalDeck = totalDeck.concat(
+        miniDeckOfCardsThirdStage,
+        miniDeckOfCardsSecondStage,
+        miniDeckOfCardsFirstStage
+      );
+
+      console.log(totalDeck);
+      // console.log(cardsDataBrown.length)
+      // console.log(cardsDataGreen.length)
+    } else if (
+      cthulthu.className === "ancient-card cthulthu active" &&
+      basicLevel.className === "difficulty active"
+    ) {
+      fillMiniDeckCthulthuStageOne(
+        cardsDataBrown,
+        cardsDataBlue,
+        miniDeckOfCardsFirstStage
+      );
+
+      fillMiniDeckCthulthuStageTwo(
+        cardsDataGreen,
+        cardsDataBrown,
+        miniDeckOfCardsSecondStage
+      );
+
+      fillMiniDeckCthulthuStageThree(
+        cardsDataGreen,
+        cardsDataBrown,
+        miniDeckOfCardsThirdStage
+      );
+
+      miniDeckOfCardsFirstStage.sort(() => Math.random() - 0.5);
+      miniDeckOfCardsSecondStage.sort(() => Math.random() - 0.5);
+      miniDeckOfCardsThirdStage.sort(() => Math.random() - 0.5);
+
+      totalDeck = totalDeck.concat(
+        miniDeckOfCardsThirdStage,
+        miniDeckOfCardsSecondStage,
+        miniDeckOfCardsFirstStage
+      );
+
+      console.log(totalDeck);
+      // console.log(cardsDataBrown.length)
+      // console.log(cardsDataGreen.length)
+    }
+
+    // console.log(totalDeck);
+  } else {
+    miniDeckOfCardsFirstStage.length = 0;
+    miniDeckOfCardsSecondStage.length = 0;
+    miniDeckOfCardsThirdStage.length = 0;
+
+    if (
+      azathoth.className === "ancient-card azathoth active" &&
+      basicLevel.className === "difficulty active"
+    ) {
+      fillMiniDeckAzathothStageOne(
+        cardsDataGreen,
+        cardsDataBrown,
+        cardsDataBlue,
+        miniDeckOfCardsFirstStage
+      );
+      // console.log(miniDeckOfCardsFirstStage);
+
+      fillMiniDeckAzathothStageTwo(
+        cardsDataGreen,
+        cardsDataBrown,
+        cardsDataBlue,
+        miniDeckOfCardsSecondStage
+      );
+
+      fillMiniDeckAzathothStageThree(
+        cardsDataGreen,
+        cardsDataBrown,
+        miniDeckOfCardsThirdStage
+      );
+
+      miniDeckOfCardsFirstStage.sort(() => Math.random() - 0.5);
+      miniDeckOfCardsSecondStage.sort(() => Math.random() - 0.5);
+      miniDeckOfCardsThirdStage.sort(() => Math.random() - 0.5);
+
+      totalDeck = totalDeck.concat(
+        miniDeckOfCardsThirdStage,
+        miniDeckOfCardsSecondStage,
+        miniDeckOfCardsFirstStage
+      );
+
+      console.log(totalDeck);
+      // console.log(cardsDataBrown.length)
+      // console.log(cardsDataGreen.length)
+    } else if (
+      cthulthu.className === "ancient-card cthulthu active" &&
+      basicLevel.className === "difficulty active"
+    ) {
+      fillMiniDeckCthulthuStageOne(
+        cardsDataBrown,
+        cardsDataBlue,
+        miniDeckOfCardsFirstStage
+      );
+
+      fillMiniDeckCthulthuStageTwo(
+        cardsDataGreen,
+        cardsDataBrown,
+        miniDeckOfCardsSecondStage
+      );
+
+      fillMiniDeckCthulthuStageThree(
+        cardsDataGreen,
+        cardsDataBrown,
+        miniDeckOfCardsThirdStage
+      );
+
+      miniDeckOfCardsFirstStage.sort(() => Math.random() - 0.5);
+      miniDeckOfCardsSecondStage.sort(() => Math.random() - 0.5);
+      miniDeckOfCardsThirdStage.sort(() => Math.random() - 0.5);
+
+      totalDeck = totalDeck.concat(
+        miniDeckOfCardsThirdStage,
+        miniDeckOfCardsSecondStage,
+        miniDeckOfCardsFirstStage
+      );
+
+      console.log(totalDeck);
+      // console.log(cardsDataBrown.length)
+      // console.log(cardsDataGreen.length)
+    }
+
+    // console.log(totalDeck);
+  }
+});
+
 azathoth.addEventListener("click", () => {
   makeVisible(difficultyLevels);
   addNumbersInDots(stageOne, 1, 2, 1);
   addNumbersInDots(stageTwo, 2, 3, 1);
   addNumbersInDots(stageThree, 2, 4, 0);
+  makeActive(azathoth);
+  removeActive(cthulthu);
+  if (
+    azathoth.className === "ancient-card azathoth active" &&
+    deckContainer.classname === "deck-container hidden"
+  ) {
+    makeVisible(shuffleButton);
+    makeInvisible(deckContainer);
+  }
+  if (deckContainer.classname !== "deck-container hidden") {
+    makeVisible(shuffleButton);
+    makeInvisible(deckContainer);
+  }
+});
+
+cthulthu.addEventListener("click", () => {
+  makeVisible(difficultyLevels);
+  addNumbersInDots(stageOne, 0, 2, 2);
+  addNumbersInDots(stageTwo, 1, 3, 0);
+  addNumbersInDots(stageThree, 3, 4, 0);
+  removeActive(azathoth);
+  makeActive(cthulthu);
+  if (
+    cthulthu.className === "ancient-card cthulthu active" &&
+    deckContainer.classname === "deck-container hidden"
+  ) {
+    makeVisible(shuffleButton);
+    makeInvisible(deckContainer);
+  }
+  if (deckContainer.classname !== "deck-container hidden") {
+    makeVisible(shuffleButton);
+    makeInvisible(deckContainer);
+  }
+});
+
+iogSothoth.addEventListener("click", () => {
+  makeVisible(difficultyLevels);
+  addNumbersInDots(stageOne, 0, 2, 1);
+  addNumbersInDots(stageTwo, 2, 3, 1);
+  addNumbersInDots(stageThree, 3, 4, 0);
+  checkAncient(event);
 });
 
 basicLevel.addEventListener("click", () => {
-  makeVisible(shuffleButton);
   makeActive(basicLevel);
-});
-
-shuffleButton.addEventListener("click", () => {
-  makeInvisible(shuffleButton);
-  makeVisible(deckContainer);
-  addCardToMiniDeck(greenCardOne, cardsDataGreen, 0, 17, miniDeckOfCardsFirstStage);
-  addCardToMiniDeck(brownCardOne, cardsDataBrown, 0, 20, miniDeckOfCardsFirstStage);
-  addCardToMiniDeck(brownCardTwo, cardsDataBrown, 0, 19, miniDeckOfCardsFirstStage);
-  addCardToMiniDeck(blueCardOne, cardsDataBlue, 0, 11, miniDeckOfCardsFirstStage);
-
-  addCardToMiniDeck(greenCardOne, cardsDataGreen, 0, 16, miniDeckOfCardsSecondStage);
-  addCardToMiniDeck(greenCardTwo, cardsDataGreen, 0, 15, miniDeckOfCardsSecondStage);
-  addCardToMiniDeck(brownCardOne, cardsDataBrown, 0, 18, miniDeckOfCardsSecondStage);
-  addCardToMiniDeck(brownCardTwo, cardsDataBrown, 0, 17, miniDeckOfCardsSecondStage);
-  addCardToMiniDeck(
-    brownCardThree,
-    cardsDataBrown,
-    0,
-    16,
-    miniDeckOfCardsSecondStage
-  );
-  addCardToMiniDeck(blueCardOne, cardsDataBlue, 0, 10, miniDeckOfCardsSecondStage);
-
-  addCardToMiniDeck(greenCardOne, cardsDataGreen, 0, 14, miniDeckOfCardsThirdStage);
-  addCardToMiniDeck(greenCardTwo, cardsDataGreen, 0, 13, miniDeckOfCardsThirdStage);
-  addCardToMiniDeck(brownCardOne, cardsDataBrown, 0, 16, miniDeckOfCardsThirdStage);
-  addCardToMiniDeck(brownCardTwo, cardsDataBrown, 0, 15, miniDeckOfCardsThirdStage);
-  addCardToMiniDeck(
-    brownCardThree,
-    cardsDataBrown,
-    0,
-    14,
-    miniDeckOfCardsThirdStage
-  );
-  addCardToMiniDeck(brownCardFour, cardsDataBrown, 0, 14, miniDeckOfCardsThirdStage);
-
-  miniDeckOfCardsFirstStage.sort(() => Math.random() - 0.5);
-
-  miniDeckOfCardsSecondStage.sort(() => Math.random() - 0.5);
-
-  miniDeckOfCardsThirdStage.sort(() => Math.random() - 0.5);
-
-  totalDeck = totalDeck.concat(
-    miniDeckOfCardsThirdStage,
-    miniDeckOfCardsSecondStage,
-    miniDeckOfCardsFirstStage
-  );
-
-  console.log(totalDeck);
+  if (deckContainer.className === "deck-container hidden")
+    makeVisible(shuffleButton);
 });
 
 deckButton.addEventListener("click", () => {
