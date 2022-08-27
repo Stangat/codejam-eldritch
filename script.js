@@ -161,6 +161,16 @@ function checkColorOfCard() {
   }
 }
 
+function returnToCardsData() {
+  if (displayingCard.color === "green") {
+    cardsDataGreen.push(displayingCard);
+  } else if (displayingCard.color === "brown") {
+    cardsDataBrown.push(displayingCard);
+  } else if (displayingCard.color === "blue") {
+    cardsDataBlue.push(displayingCard);
+  }
+}
+
 //Azathoth
 
 function fillMiniDeckAzathothStageOne(
@@ -233,9 +243,10 @@ function fillMiniDeckCthulthuStageThree(sourcegGreen, sourceBrown, miniDeck) {
 shuffleButton.addEventListener("click", () => {
   makeInvisible(shuffleButton);
   makeVisible(deckContainer);
+  makeVisible(deckButton);
   if (totalDeck.length > 0) {
     let card;
-    // console.log(totalDeck);
+    console.log(totalDeck);
     for (let i = 0; i < totalDeck.length; i++) {
       if (totalDeck[i].color === "green") {
         card = totalDeck.splice(i, 1)[0];
@@ -256,11 +267,11 @@ shuffleButton.addEventListener("click", () => {
     miniDeckOfCardsSecondStage.length = 0;
     miniDeckOfCardsThirdStage.length = 0;
 
-    // console.log(cardsDataGreen.length);
-    // console.log(cardsDataBrown.length);
-    // console.log(cardsDataBlue.length);
+    console.log(cardsDataGreen.length);
+    console.log(cardsDataBrown.length);
+    console.log(cardsDataBlue.length);
 
-    // console.log(totalDeck);
+    console.log(totalDeck);
 
     if (
       azathoth.className === "ancient-card azathoth active" &&
@@ -429,14 +440,12 @@ azathoth.addEventListener("click", () => {
   addNumbersInDots(stageThree, 2, 4, 0);
   makeActive(azathoth);
   removeActive(cthulthu);
-  if (
-    azathoth.className === "ancient-card azathoth active" &&
-    deckContainer.classname === "deck-container hidden"
-  ) {
+
+  if (deckContainer.classname === "deck-container hidden") {
     makeVisible(shuffleButton);
     makeInvisible(deckContainer);
   }
-  if (deckContainer.classname !== "deck-container hidden") {
+  if (basicLevel.className === "difficulty active") {
     makeVisible(shuffleButton);
     makeInvisible(deckContainer);
   }
@@ -449,14 +458,12 @@ cthulthu.addEventListener("click", () => {
   addNumbersInDots(stageThree, 3, 4, 0);
   removeActive(azathoth);
   makeActive(cthulthu);
-  if (
-    cthulthu.className === "ancient-card cthulthu active" &&
-    deckContainer.classname === "deck-container hidden"
-  ) {
+
+  if (deckContainer.classname === "deck-container hidden") {
     makeVisible(shuffleButton);
     makeInvisible(deckContainer);
   }
-  if (deckContainer.classname !== "deck-container hidden") {
+  if (basicLevel.className === "difficulty active") {
     makeVisible(shuffleButton);
     makeInvisible(deckContainer);
   }
@@ -479,4 +486,5 @@ basicLevel.addEventListener("click", () => {
 deckButton.addEventListener("click", () => {
   showCard();
   checkColorOfCard();
+  returnToCardsData();
 });
