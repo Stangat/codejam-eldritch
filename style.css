@@ -133,7 +133,7 @@ body {
 .last-card {
   height: 190px;
   width: 130px;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 .deck-container {
