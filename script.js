@@ -5,11 +5,11 @@ const iogSothoth = document.querySelector(".iogSothoth");
 const shubNiggurath = document.querySelector(".shubNiggurath");
 
 const difficultyLevels = document.querySelector(".difficulty-container");
-const superEasyLevel = difficultyLevels.children[0];
-const easyLevel = difficultyLevels.children[1];
-const basicLevel = difficultyLevels.children[2];
-const highLevel = difficultyLevels.children[3];
-const superHighLevel = difficultyLevels.children[4];
+// const superEasyLevel = difficultyLevels.children[0];
+// const easyLevel = difficultyLevels.children[1];
+const basicLevel = difficultyLevels.children[0];
+// const highLevel = difficultyLevels.children[3];
+// const superHighLevel = difficultyLevels.children[4];
 
 const shuffleButton = document.querySelector(".shuffle-deck");
 const deckContainer = document.querySelector(".deck-container");
@@ -141,11 +141,11 @@ function checkColorOfCard() {
 }
 
 function returnToCardsData() {
-  if (displayingCard.color === "green") {
+  if (displayingCard.color === "green" && cardsDataGreen.length < 18) {
     cardsDataGreen.push(displayingCard);
-  } else if (displayingCard.color === "brown") {
+  } else if (displayingCard.color === "brown" && cardsDataBrown.length < 21) {
     cardsDataBrown.push(displayingCard);
-  } else if (displayingCard.color === "blue") {
+  } else if (displayingCard.color === "blue" && cardsDataBlue.length < 12) {
     cardsDataBlue.push(displayingCard);
   }
 }
