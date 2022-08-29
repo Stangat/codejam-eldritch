@@ -317,6 +317,7 @@ shuffleButton.addEventListener("click", () => {
   makeInvisible(shuffleButton);
   makeVisible(deckContainer);
   makeVisible(deckButton);
+  currentCard.style.backgroundImage = "none"
   if (totalDeck.length > 0) {
     let card;
     // console.log(totalDeck);
